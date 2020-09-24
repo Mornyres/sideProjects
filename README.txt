@@ -1,0 +1,2 @@
+A bunch of assorted projects and exercises just to show some things I do in my spare time. Bear in mind that, like many people, I tend to do programming practice purely for my own benefit. I thought it would be a pain to organize these, and it was.
+For every file that's included there must be 4 more that I've misplaced, deleted or otherwise lost track of. This isn't indicative of my best nor most polished work, but it at least shows... something.

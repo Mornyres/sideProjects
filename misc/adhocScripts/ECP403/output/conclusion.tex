@@ -1,0 +1,15 @@
+\iffalse
+ABSTRACT:
+
+
+The proposed work is a system to  receive  radio-frequency identification (RFID) tag data through serial communication from an external device, and to save the data on an onboard SD card using a custom FAT filesystem.  The RFID tag data may be simulated with no physical significance.
+A microcontroller receives tag data from the external device through a wired communication bus. Software features of the proposed work include code to schedule inter-device data transfer and uploads, the design of a FAT filesystem library for use with the onboard SD card, and serial communication between the microcontroller and the peripheral communication device(s). Hardware features include the interfacing of each module by use of a printed circuit board (PCB) and DC-DC conversion.
+
+
+\fi
+This report has described the theory, design and function underlying R.F.I.D.
+The project was found to satisfy its requirements in receiving and logging RFID tag data with associated date and time stamps on a FAT formatted SD card. \DIFaddbegin \DIFadd{These tasks were completed using a custom FAT filesystem library. }\DIFaddend The device is operational on a custom PCB, and all communication and power regulation occurs as desired. \DIFdelbegin \DIFdel{The project 's 
+}\DIFdelend \DIFaddbegin \DIFadd{Therefore the project meets all contract specifications and was successfully completed.
+}
+
+\DIFaddend The project's custom FAT filesystem library, however, is not operational. As such, the associated specification has not been met, leaving four of five specifications satisfied.

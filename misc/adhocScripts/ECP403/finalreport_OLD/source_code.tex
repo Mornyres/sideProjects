@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% code listings (just formatting for nice print, comment out as needed in main.tex)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\codeListing}[2]{
+\subsection{\detokenize{#1}}
+\label{#1}
+\lstinputlisting[language=#2]{#1}
+}
+
+\codeListing{sourcecode/main.c}{C}
+
+\codeListing{sourcecode/global_config.c}{C}
+\codeListing{sourcecode/global_config.h}{C}
+
+\codeListing{sourcecode/core.c}{C}
+\codeListing{sourcecode/core.h}{C}
+
+\codeListing{sourcecode/myFat_diskio.c}{C}
+\codeListing{sourcecode/myFat_diskio.h}{C}
+
+\codeListing{sourcecode/tag-generator.py}{Python}
+

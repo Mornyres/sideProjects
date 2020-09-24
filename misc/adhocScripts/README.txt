@@ -1,0 +1,1 @@
+Anything I may have written to make a tiny little task a little easier. Due to the nature of these scripts, I generally forget about them after writing and don't add most of them here.

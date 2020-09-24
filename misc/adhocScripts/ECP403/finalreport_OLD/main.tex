@@ -1,0 +1,269 @@
+% % % Headers and definitions
+\documentclass[11pt]{article}
+%\usepackage{times}
+
+\usepackage{fullpage} % sets more standardized margins
+\usepackage{graphicx} % some graphics functions I use 
+\usepackage{abstract} % abstract function
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{array}
+\usepackage{gensymb}
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{multirow}
+
+\usepackage[font=small]{caption}
+
+%%%%%%%%%%%%%%%%%%%%%% BIB STUFF
+
+%%% This block needed for IEEEtran control entry, edit actual entry in .bib file used
+\makeatletter
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack
+  \@for\@citeb:=#2\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+  \@esphack}
+\makeatother
+%%%%%%%%%%%%%%%%%%%
+
+\usepackage{babel}
+\iffalse
+\usepackage[
+    backend=biber, 
+    natbib=true,
+    style=numeric,
+    style=ieee,            % ieee style for easy referencing
+    sorting=none
+]{biblatex}
+\addbibresource{bib.bib}
+\fi
+
+%\addbibresource{IEEEabrv.bib}
+%\addbibresource{IEEEexample.bib}
+
+%\DefineBibliographyStrings{english}{
+%  references = {Sources},
+%}
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+% Uncomment for hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+ 
+\lstset{style=mystyle}
+\renewcommand{\lstlistingname}{Source}
+\renewcommand{\lstlistlistingname}{List of \lstlistingname s}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\absnamepos}{flushleft} % left justifies abstract
+\setlength{\absleftindent}{0pt}
+\setlength{\absrightindent}{0pt}
+\setlength{\absleftindent}{0pt}
+\setlength{\absrightindent}{0pt}
+
+% double or 1.5 spaced lines, 11 point Times New
+%Roman for the text body, Arial of appropriate size for headings, a left margin of 1.5”, a right, top and bottom
+%margin of 1”
+\usepackage{geometry}
+\geometry{left=1.5in,top=1in,bottom=1in}
+
+
+% % %
+% Set up IEEE style paragraphing
+% % %
+\setlength{\parskip}{1em} % The \par command now skips a line between paragraphs, eliminates warnings from using the \par or \\ commands
+\setlength{\parindent}{0em} % Left justifies paragraphs after a \par command 
+%\setlength{\belowcaptionskip}{-10pt} % change length below figure caption 
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand*\thetable{\Roman{table}}
+\begin{document}
+\bstctlcite{IEEEexample:BSTcontrol}
+% To enable subsubsubsections!!!
+%%%%
+%\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+%\setcounter{secnumdepth}{4}
+%\setcounter{tocdepth}{4}
+%%%%
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
+%\setlength{\belowcaptionskip} -100
+\pagenumbering{gobble} % Turn off page numbering for titles and tables
+
+% Title and author
+
+	\title{ 
+	\textbf{ Robust Framework for Interfacing Devices (R.F.I.D.)}
+    \\ ECE 403 Final Report
+    \\ University of Maine}
+	
+\author{%\it{Forest LeBlanc, Computer Engineer}\\
+  	    \it{Forest LeBlanc, Computer Engineer}\\
+  	    \it{Dan Schlabig, Electrical and Computer Engineer}
+  	                }
+\date{\today}
+\maketitle
+
+
+% % % % % % % % % % % % % % %		
+% Abstract 
+
+\newpage
+\begin{abstract}
+\label{sec:1_abstract}
+
+\pagenumbering{gobble}
+\pagenumbering{roman}
+
+\input{Sections/1_abstract}
+\end{abstract}
+
+% % % % % % % % % % % % % % % 
+% Tables of contents, figures, tables, acronyms, etc
+\newpage % jumps to new page
+\setlength{\parskip}{0em} % Don't skip a line between paragraphs for TOC and and lists of figures and tables
+
+\tableofcontents
+
+\newpage
+\listoffigures
+
+\newpage
+\listoftables
+
+\newpage 
+\clearpage
+\setlength{\parskip}{1em} % The \par command now skips a line between paragraphs, eliminates warnings from using the \par or \\ commands
+
+\pagenumbering{arabic} % Turn on page numbering
+
+% % % % % % % % % % % % % % %
+% Introduction section  
+\section{Introduction}
+\label{sec:2_intro}
+\input{Sections/2_intro}
+
+% % % % % % % % % % % % % % %
+% Breakdown                           
+\section{Breakdown}
+\label{sec:3_breakdown}
+\input{Sections/3_breakdown}
+
+% % % % % % % % % % % % % % %		
+\section{Details}
+\label{sec:4_details}
+\input{Sections/4_details}
+
+
+% % % % % % % % % % % % % % %		
+% Results                           
+\section{Results}
+\label{sec:5_results}
+\input{Sections/5_results}
+
+% % % % % % % % % % % % % % %		
+% Conclusion                                                
+\section{Conclusion}
+\label{sec:6_conclusion}
+\input{Sections/6_conclusion}
+
+% % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % %		
+% Appendices
+
+
+\renewcommand*{\UrlFont}{\rmfamily}
+
+
+
+%\newpage
+\nocite{*}
+
+%\label{sec:references}
+%\printbibliography[heading=none]
+%\renewcommand\refname{}
+\section{References}
+%% APPENDICES
+%\endpage
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,IEEEexample}
+
+\appendix
+% hey we don't need to to say APPENDIX or anything. at least that's what EPayne said
+% it needs the A, B, C, D, etc though like A Project Contract. the only problem is the random extra pages (fixed pages)
+
+%\endpage
+\section{Project Contract}
+\label{sec:A_project_contract}
+%\input{Sections/A_project_contract}
+\includegraphics[width=\textwidth]{Figures/appendix/Contract.pdf}
+
+%\endpage
+
+\section{Schematics}
+%\centering
+\includegraphics[scale=.75, angle=90]{Figures/appendix/senior_project_schem_REVB_3_1_2019_roughdraft.pdf}
+
+\section{Parts List}
+
+\includegraphics[width=\textwidth]{Figures/appendix/parts_list_3_1_2019_roughdraft.PNG}
+%\endpage
+
+
+%\section{Datasheets}
+
+%\section{Operating Instructions}
+
+
+% COMMENT OUT TO EXCLUDE SOURCE CODE
+%\pagenumbering{gobble}
+%\input{source_code.tex}
+
+\end{document}
