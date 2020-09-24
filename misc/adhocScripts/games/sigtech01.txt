@@ -1,0 +1,63 @@
+// A basic signal technician setup for the game Space Station 13. Basically, processes player radio input after modulation to then be passed to the appropriate radio channel. Don't worry if none of that makes sense. It's based on CPP syntax, so I figured why not add it in?
+
+def process_signal(sig){
+
+	jobs=list(
+"Admiral", "Adm", 
+"Assistant", "Asst", 
+"Atmospheric Technician", "Atmo", 
+"Bartender", "Bar", 
+"Botanist", "Hydr", 
+"Captain", "Cap", 
+"Cargo Technician", "Carg", 
+"Chaplain", "Chap", 
+"Chemist", "Chem", 
+"Chief Engineer", "CE", 
+"Chief Medical Officer", "CMO", 
+"Clerk", "Clrk", 
+"Clown", "Clown", 
+"Curator", "Cura", 
+"Detective", "Det", 
+"Geneticist", "Gene", 
+"Head of Personnel", "HoP", 
+"Head of Security", "HoS", 
+"Janitor", "Jani", 
+"Lawyer", "Law", 
+"Librarian", "Lib", 
+"Medical Doctor", "MD", 
+"Mining Medic", "Medi", 
+"Paramedic", "Para", 
+"Psychiatrist", "Psyc", 
+"Quartermaster", "QM", 
+"Research Director", "RD", 
+"Roboticist", "Robo", 
+"Scientist", "Sci", 
+"Security Officer", "Sec", 
+"Shaft Miner", "Mine", 
+"Signal Technician", "Captain", 
+"Station Engineer", "Engi", 
+"Tourist", "Tour", 
+"Unassigned", "Unas", 
+"Unknown", "Unkn", 
+"Virologist", "Viro", 
+"Warden", "Ward", 
+"Personal AI", "pAI", 
+"Default Cyborg", "DefB", 
+"Engineering Cyborg", "EngB", 
+"Janitor Cyborg", "JanB", 
+"Medical Cyborg", "MedB", 
+"Miner Cyborg", "MnrB", 
+"Peacekeeper Cyborg", "PceB", 
+"Security Cyborg", "SecB", 
+"Service Cyborg", "SrvB", 
+"Standard Cyborg", "StnB");
+
+	if(find(jobs,sig.job)){ sig.job=jobs[find(jobs,sig.job)+1]; }
+sig.source+="["+sig.job+"]";
+
+	
+//	if(find(list(bunch of bad words to be filtered out here that i'll spare you from), sig.content)){ sig.pass=0;}
+
+	
+
+return sig;}
