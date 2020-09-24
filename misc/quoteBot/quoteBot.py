@@ -15,5 +15,5 @@ def randomline(text):
 filename = "quotes.txt"
 myFile = open(filename, 'r')
 
-
+print("\n")
 print(randomline(myFile))
