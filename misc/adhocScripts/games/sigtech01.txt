@@ -1,4 +1,5 @@
 // A basic signal technician setup for the game Space Station 13. Basically, processes player radio input after modulation to then be passed to the appropriate radio channel. Don't worry if none of that makes sense. It's based on CPP syntax, so I figured why not add it in? 
+// It's in .txt format because I'd generally be copy+pasting this into an in-game console -- in other words, this file isn't directly being run, I'm just saving the text for my character to reproduce.
 // See if you can spot the prank involved.
 // ***********************************************************************
 
