@@ -2,7 +2,6 @@
 #   - plaintext to pdf from scratch
 #   - stitch 2 pdfs together
 
-
 #from selenium.webdriver.chrome.options import Options
 # we need javascript support
 #from selenium import webdriver
@@ -68,15 +67,18 @@ def postingParse(fileName, reference, nSkills):
                 # Debugging
                 #print (query, "\t", line.upper())
                 #print ("Found?", re.search(query, line.upper()))
-                #
                 entryCount = len(re.findall(query, line.upper()))
                 entryCounts[entry] += entryCount
-                
+               
     print ("Top ",nSkills, " Keywords | Occurrences")
     retString = []
     for elem in sorted(entryCounts.items(), key=lambda x: x[1], reverse=True)[:nSkills]:
-        print (elem[0], " | ", elem[1])
-        retString.append(elem[0])
+        # make sure we only append skills that actually appear
+        if elem[1] > 0:
+            print (elem[0], " | ", elem[1])
+            retString.append(elem[0])
+        else:
+            break
     return retString
 
 # input: list of skills
@@ -87,17 +89,18 @@ def skillMap(skills, detailLevel):
 # inputs: skill dict with name and blurb of each skill
 #         target file with empty table to be populated
 # output: none, file modified in-place
-def dictPaste(skillDict, targetFile):
+def dictUpdate(additions, targetFile):
+    
     return None
-
+    
 def textToPDF(inputText, targetFile):
     
     pdf = FPDF()
     pdf.add_page()
-    pdf.add_font('Bitter', '', 'helperFiles/Bitter-Regular.ttf', uni = True)
-    pdf.add_font('Bitter', 'B', 'helperFiles/Bitter-Bold.ttf', uni = True)
-    pdf.add_font('Bitter', 'I', 'helperFiles/Bitter-Italic.ttf', uni = True)
-    pdf.add_font('Bitter', 'BI', 'helperFiles/Bitter-BoldItalic.ttf', uni = True)
+    pdf.add_font('Bitter', '', 'helperFiles/fonts/Bitter-Regular.ttf', uni = True)
+    pdf.add_font('Bitter', 'B', 'helperFiles/fonts/Bitter-Bold.ttf', uni = True)
+    pdf.add_font('Bitter', 'I', 'helperFiles/fonts/Bitter-Italic.ttf', uni = True)
+    pdf.add_font('Bitter', 'BI', 'helperFiles/fonts/Bitter-BoldItalic.ttf', uni = True)
     
     h1Color = [11,83,148]
     bodyColor = [67,67,67]
@@ -107,7 +110,7 @@ def textToPDF(inputText, targetFile):
     byLineSize = 11
     bodySize = 10
     # style: B = bold, I = italic, U= underline
-    pdf.set_y(-48.0) # 1.07 or .98 in... 27.178 mm or 24.892 mm
+    pdf.set_y(-47.9) # 1.07 or .98 in... 27.178 mm or 24.892 mm
     pdf.set_x(37.6)
     pdf.set_text_color(bodyColor[0],bodyColor[1],bodyColor[2])
     pdf.set_font("Bitter", style='B', size = bodySize) 
@@ -155,8 +158,11 @@ def scratchToPDF():
 # Driver code:
 ref = {}
 
-skillString = "Python, C/C++, HTML/CSS, JavaScript,  VHDL/Verilog, Assembly, Java, MATLAB, R language, Algorithms, Machine Learning, Data Structures, Git, SQL, Linux/UNIX, ETL, Agile, Keras, Tensorflow, AWS, Pandas, numpy, scipy, matplotlib, sklearn, Tableau, Shiny, biokit, jupyter, OpenCV, NASA GMAT, Galaxy, MS Office, REACT.js, Circuits, Electronics, PCB Design, FPGAs, Microcontrollers, RTOS, Spanish, Chemistry, Physics, Mathematics, Technical writing"
-
+skillString = ""
+with open('helperFiles/keywordDict.txt', 'r') as skillDB:
+    for line in skillDB:
+        skillString = skillString + line
+        
 # split() for whitespace, strip() for commas
 for skill in skillString.split(','):
     if skill not in ref.keys():
@@ -165,16 +171,19 @@ for skill in skillString.split(','):
 ###
 
 logFileName = "logs/" + strftime("%Y-%m-%d_%H:%M:%S",localtime()) + ".txt"
-pdfFileName = "outputs/" + strftime("%Y-%m-%d_%H:%M:%S",localtime()) + ".pdf"
+pdfFileName = "logs/" + strftime("%Y-%m-%d_%H:%M:%S",localtime()) + ".pdf"
 
 pasteInput(logFileName)
-keywordList = postingParse(logFileName, ref, 7)
-addText = ""
+keywordList = postingParse(logFileName, ref, 5)
 
+if keywordList == []:
+    keywordList.append("N/A")
+    print (keywordList)
+
+addText = ""
 for keyword in keywordList:
     addText = addText + keyword + ", "
 addText = addText[:-2]
 textToPDF(addText, pdfFileName)
 
-# stitch pdfFileName, 'resumeTemplate.pdf'
 stitchPDF('helperFiles/templateResume.pdf', pdfFileName, 'outputs/ForestLeBlanc_Resume.pdf')

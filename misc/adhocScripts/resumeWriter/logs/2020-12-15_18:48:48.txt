@@ -1,0 +1,1 @@
+(Some) Abilities Relevant: Languages: Python, C/C++, HTML/CSS, JavaScript,  VHDL/Verilog, Assembly(x86), Go, Java, MATLAB, R Tech/SW Eng: Algorithms, Machine Learning, Data Structures, Git, SQL, Linux/UNIX, ETL, AgileCE/EE skills: Circuits, Electronics, PCB Design, FPGAs, Microcontrollers, RTOSMisc: Conversational Spanish, Chemistry, Physics, Mathematics, Technical writing
