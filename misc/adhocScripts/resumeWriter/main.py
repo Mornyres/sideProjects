@@ -52,23 +52,31 @@ def pasteInput(fileName):
     with open(fileName, 'w') as logFile:
         for line in contents:
             logFile.write(line)
+            logFile.write("\n")
     print ("-------------------------------------------------")
     return 0
     
-def postingParse(fileName, reference, nSkills):
-    # Find the most common entries occurring in FILE from a given list
-    entryCounts = dict.fromkeys(reference)
+def postingParse(fileName, reference, nSkills, verbose = True):
+    # Find the most common entries occurring in dict from a given list
+    
+    # convert list to dict with 0 as default value
+    entryCounts = dict.fromkeys(reference, 0)
     with open(fileName, 'r') as file:
         for line in file:
             for entry in reference:
                 # TODO: special handling here for cases of C++, .NET, other with special chars
                 query = "" + re.escape(entry.upper()) + ""
-                entryCounts[entry] = 0
-                # Debugging
-                #print (query, "\t", line.upper())
-                #print ("Found?", re.search(query, line.upper()))
+
                 entryCount = len(re.findall(query, line.upper()))
-                entryCounts[entry] += entryCount
+
+                # Debugging               
+                if (entryCount != 10 and (verbose == True)):
+                    print (entryCount)
+                    print (query, " : ", line.upper())
+                    print ("Found?", re.search(query, line.upper()))
+                print ("Type:", type(entryCount))
+
+                entryCounts[entry] = entryCounts[entry] + entryCount
                
     print ("Top ",nSkills, " Keywords | Occurrences")
     retString = []
@@ -149,7 +157,7 @@ def scratchToPDF():
     with open(logFileName, 'a') as logFile:
         logFile.write('-------------------Start template------------------------'+"\n")
         for line in rawText:
-            logFile.write(line + "\n")  
+            logFile.write(line + " ")  
 
     textToPDF(rawText, pdfFileName)
 
@@ -161,10 +169,10 @@ ref = {}
 skillString = ""
 with open('helperFiles/keywordDict.txt', 'r') as skillDB:
     for line in skillDB:
-        skillString = skillString + line
+        skillString = skillString +        line
         
 # split() for whitespace, strip() for commas
-for skill in skillString.split(','):
+for skill in skillString.split(', '):
     if skill not in ref.keys():
         # hypothetically could have different entries, i.e. yrs experience, etc.
         ref[skill] = skill
